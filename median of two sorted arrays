@@ -1,0 +1,39 @@
+//Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+//The overall run time complexity should be O(log (m+n)).
+//(HARD)
+
+//sol: I personally solved this by firstly putting all the elements in a vector called combo and then using sort() function on it 
+//then we will consider two cases
+
+//case1: size of combo vector is odd then we can simply return combo[combo.size()/2)]
+
+//case2: size of combo vector is even then we will return avg of combo[combo.size()-1] and combo[combo.size()]
+
+//note: sort() function sorts in decreasing order
+//note: you should know about explicit typecasting as size() function returns an int value
+
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+       vector<int> combo;
+       for(int i=0;i<nums1.size();i++)
+       {
+           combo.push_back(nums1[i]);
+       } 
+       for(int i=0;i<nums2.size();i++)
+       {
+           combo.push_back(nums2[i]);
+       } 
+       sort(combo.begin(),combo.end());
+       if((combo.size()%2)!=0)
+       {
+           return combo[combo.size()/2];
+       }
+       else
+       {
+           double value=(double(combo[(combo.size()/2)-1])+double(combo[combo.size()/2]))/2;
+           return value ;
+       }
+    }
+};
