@@ -1,0 +1,24 @@
+//Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+//There is only one repeated number in nums, return this repeated number.
+
+//sol:as there is only one duplicate number in the array therefore we can firstly sort and then look for adjacent element 
+// if at any point an elemnt of array matches with the one adjacent to it we will call it duplicate
+
+class Solution{
+public:
+    int findDuplicate(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int val=nums[0];//initialised with initial element after sorting
+        for(int i=1;i<nums.size();i++)
+        {
+            if (val==nums[i])// value of val start with first and is being compared
+            {
+                break;
+            }
+            else{// if the val value doesn't match we give it the value of that particular number
+                val=nums[i];
+            }
+        }
+        return val;
+    }
+};
